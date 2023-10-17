@@ -3,4 +3,37 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+    <!-- Define the security constraint -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Pages</web-resource-name>
+            <url-pattern>/secured/*</url-pattern> <!-- URL patterns to protect -->
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER</role-name> <!-- Role required to access protected pages -->
+        </auth-constraint>
+    </security-constraint>
+
+    <servlet>
+        <servlet-name>MyLoginServlet</servlet-name>
+        <servlet-class>com.optima.demo12.Http.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyLoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern> <!-- Updated URL pattern to match your servlet -->
+    </servlet-mapping>
+
+    <!-- Define the login configuration -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+<!--            <form-error-page>/login-error.jsp</form-error-page> &lt;!&ndash; Added error page for login failure &ndash;&gt;-->
+        </form-login-config>
+    </login-config>
+
+    <!-- Define security roles -->
+    <security-role>
+        <role-name>USER</role-name> <!-- Role names used in auth-constraint -->
+    </security-role>
 </web-app>

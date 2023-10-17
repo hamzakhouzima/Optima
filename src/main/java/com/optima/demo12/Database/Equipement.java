@@ -1,4 +1,4 @@
-package com.optima.demo12;
+package com.optima.demo12.Database;
 
 import jakarta.persistence.*;
 

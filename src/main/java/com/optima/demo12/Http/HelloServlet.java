@@ -1,4 +1,4 @@
-package com.optima.demo12;
+package com.optima.demo12.Http;
 
 import java.io.*;
 
@@ -34,4 +34,6 @@ public class HelloServlet extends HttpServlet {
 
     public void destroy() {
     }
+
+
 }

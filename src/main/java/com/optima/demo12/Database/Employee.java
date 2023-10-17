@@ -1,7 +1,6 @@
-package com.optima.demo12;
+package com.optima.demo12.Database;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
 import java.util.List;
 
@@ -31,11 +30,11 @@ public class Employee {
     @Column(name = "date")
     private String date;
 
-    @Column(name = "enabled")
-    private Boolean enabled;
+    @Column(name = "enabled", columnDefinition = "BOOLEAN DEFAULT true")
+    private Boolean enabled ;
 
-    @Column(name = "locked")
-    private Boolean locked;
+    @Column(name = "locked", columnDefinition = "BOOLEAN DEFAULT false")
+    private Boolean locked ;
 
     @ManyToOne
     @JoinColumn(name = "department_id")

@@ -1,7 +1,8 @@
-package com.optima.demo12;
+package com.optima.demo12.Http;
 
 
-//import com.optima.demo12.HibernateUtil;
+//import com.optima.demo12.Database.HibernateUtil;
+import com.optima.demo12.Database.Employee;
 import jakarta.persistence.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,12 +10,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
-@WebServlet("/")
+@WebServlet("/admin")
 public class AdminServlet extends HttpServlet {
 
     @PersistenceUnit(unitName = "default")
@@ -26,8 +24,9 @@ public class AdminServlet extends HttpServlet {
         // Your servlet logic
 
         // Forward the request to a JSP file
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/path/to/your.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPage.jsp"); //create a jsp file and send a get Request
         dispatcher.forward(request, response);
+
     }
 
 
@@ -38,6 +37,7 @@ public class AdminServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String date = request.getParameter("date");
 
         System.out.println("-----------------------------------------");
 
@@ -48,31 +48,26 @@ public class AdminServlet extends HttpServlet {
         System.out.println(password);
         System.out.println("-----------------------------------------");
 
-        //   try {
-        //      Thread.sleep(2000000);
-        // } catch (InterruptedException e) {
-        //   throw new RuntimeException(e);
-        //}
+//
+//        Departement dep = new Departement();
+//
+//        dep.setDescription("azefaz");
+//        dep.setDepartement_boss("fzerfz");
+//        dep.setName("oierferfz");
 
-        Departement dep = new Departement();
-
-        dep.setDescription("azefaz");
-        dep.setDepartement_boss("fzerfz");
-        dep.setName("oierferfz");
-
-        //Employee employee = new Employee();
-        //employee.setUsername(username);
-        //employee.setFirstName(firstName);
-        //employee.setLastName(lastName);
-        //employee.setEmail(email);
-        //employee.setPassword(password);
-        //employee.setDate("010101");
-        //   employee.setDepartment(2);
+        Employee employee = new Employee();
+        employee.setUsername(username);
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setEmail(email);
+        employee.setPassword(password);
+        employee.setDate(date);
+//        employee.setDepartment(2);
 
 
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(dep);
+            entityManager.persist(employee);
             entityManager.getTransaction().commit();
             response.getWriter().println("Data saved successfully!");
         } catch (Exception e) {

@@ -20,17 +20,19 @@
 <div class="container">
     <div class="screen">
         <div class="screen__content">
-            <form class="login">
+            <form class="login" action="LoginServlet" method="post">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="text" class="login__input" placeholder="User name / Email" name="">
+                    <input type="text" class="login__input" placeholder="User name / Email" name="email">
                 </div>
                 <div class="login__field">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="login__input" placeholder="Password">
+                    <input type="password" class="login__input" placeholder="Password" name="password">
                 </div>
                 <button class="button login__submit">
                     <span class="button__text">Log In Now</span>
+                    <input type="submit" class="login__input" >
+
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
             </form>

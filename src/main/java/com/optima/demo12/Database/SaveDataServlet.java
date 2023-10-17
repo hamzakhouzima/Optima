@@ -1,15 +1,12 @@
-package com.optima.demo12;// SaveDataServlet.java
+package com.optima.demo12.Database;// SaveDataServlet.java
 
-//import com.optima.demo12.HibernateUtil;
+//import com.optima.demo12.Database.HibernateUtil;
 import jakarta.persistence.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 
