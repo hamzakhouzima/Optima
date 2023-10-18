@@ -1,0 +1,132 @@
+
+
+.sidebar-bg{
+    background-color: #1f2937;
+    background-image: linear-gradient(180deg, #1f2937 10%, #1f2937 100%);
+    background-size: cover;
+}
+
+body{
+    background-color: #181F3B;
+}
+
+
+
+/*
+////////////login///////
+*/
+.btn-color{
+    background-color: #0e1c36;
+    color: #fff;
+
+}
+
+.profile-image-pic{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+/*///////////movie detail//////////*/
+
+.navbar-default{
+    transition:500ms ease;
+    background:transparent;
+}
+.navbar-default.scrolled{
+    background:#000;
+}
+/*-----------------------------------*\
+ * #MOVIE DETAIL
+\*-----------------------------------*/
+.card-background{
+    background-color: #181F3B;
+}
+/* Defines the width of the carousel and centers it on the page */
+/*rating*/
+.movie-rate {
+     display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid #405266;
+    border-bottom: 1px solid #405266;
+    margin-bottom: 70px;
+}
+.rate-star{
+     padding-left: 10px;
+    margin-left: 10px;
+    border-left: 1px solid #405266;
+}
+
+.rating-box {
+    position: relative;
+    background: #fff;
+    padding: 25px 50px 35px;
+    border-radius: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.rating-box header {
+    font-size: 22px;
+    color: #dadada;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.rating-box .stars {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.stars i {
+    color: #e6e6e6;
+    font-size: 35px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.stars i.active {
+    color: gold;
+}
+
+
+
+.owl-controls .owl-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.owl-controls .owl-buttons .owl-prev {
+    background: gold;
+    position: absolute;
+    top: -13%;
+    left: 15px;
+    padding: 0 18px 0 15px;
+    border-radius: 50px;
+     transition: background 0.5s ease 0s;
+}
+
+.owl-controls .owl-buttons .owl-next {
+    background: gold;
+    position: absolute;
+    top: -13%;
+    right: 15px;
+    padding: 0 15px 0 18px;
+    border-radius: 50px;
+     transition: background 0.5s ease 0s;
+}
+
+.owl-controls .owl-buttons .owl-prev:after,
+.owl-controls .owl-buttons .owl-next:after {
+    content: "\f104";
+    font-family: FontAwesome, sans-serif;
+    color: #333;
+    font-size: 30px;
+}
+
+.owl-controls .owl-buttons .owl-next:after {
+    content: "\f105";
+}
+
+
+

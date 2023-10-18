@@ -3,37 +3,54 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+    <!-- Define security roles -->
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+
+    <!-- Map the ADMIN role to a user or group (You need to specify a user or group name here) -->
+<!--    <security-role-mapping>-->
+<!--        <role-name>ADMIN</role-name>-->
+<!--        <principal-name>admin</principal-name> &lt;!&ndash; Replace with the actual user or group name &ndash;&gt;-->
+<!--    </security-role-mapping>-->
+
     <!-- Define the security constraint -->
     <security-constraint>
+
         <web-resource-collection>
             <web-resource-name>Protected Pages</web-resource-name>
-            <url-pattern>/secured/*</url-pattern> <!-- URL patterns to protect -->
+            <url-pattern>/admin/*</url-pattern> <!-- URL patterns to protect -->
         </web-resource-collection>
         <auth-constraint>
-            <role-name>USER</role-name> <!-- Role required to access protected pages -->
+            <role-name>ADMIN</role-name> <!-- Role required to access protected pages -->
         </auth-constraint>
     </security-constraint>
 
     <servlet>
-        <servlet-name>MyLoginServlet</servlet-name>
+        <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.optima.demo12.Http.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MyLoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern> <!-- Updated URL pattern to match your servlet -->
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.optima.demo12.Http.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
 
     <!-- Define the login configuration -->
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/login.jsp</form-login-page>
-<!--            <form-error-page>/login-error.jsp</form-error-page> &lt;!&ndash; Added error page for login failure &ndash;&gt;-->
+            <!-- Add a form-error-page if needed -->
         </form-login-config>
     </login-config>
-
-    <!-- Define security roles -->
-    <security-role>
-        <role-name>USER</role-name> <!-- Role names used in auth-constraint -->
-    </security-role>
 </web-app>

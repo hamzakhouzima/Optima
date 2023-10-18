@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-@WebServlet("/admin")
+@WebServlet("/demo12_war_exploded/admin/")
 public class AdminServlet extends HttpServlet {
 
     @PersistenceUnit(unitName = "default")
@@ -24,7 +24,7 @@ public class AdminServlet extends HttpServlet {
         // Your servlet logic
 
         // Forward the request to a JSP file
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPage.jsp"); //create a jsp file and send a get Request
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Dashboard.jsp"); //create a jsp file and send a get Request
         dispatcher.forward(request, response);
 
     }

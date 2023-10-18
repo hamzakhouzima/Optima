@@ -8,63 +8,71 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/MyLoginServlet")
+@WebServlet("/demo12_war_exploded/MyLoginServlet")
 public class LoginServlet extends HttpServlet {
-    @PersistenceContext(unitName = "default")
-   // private EntityManager entityManager;
+//    @PersistenceContext(unitName = "default")
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Forward the request to the login page (login.jsp)
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
         dispatcher.forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (isUserValid(email, password, response)) {
+        if (isUserValid(email, password,response,request)) {
             System.out.println("Correct");
+
         } else {
             System.out.println("Incorrect");
+
         }
 
     }
 
-    private boolean isUserValid(String email, String password, HttpServletResponse response) throws IOException {
+    private boolean isUserValid(String email, String password, HttpServletResponse response,HttpServletRequest request) throws IOException, ServletException {
         // Query the database for an employee with the specified email
-
+        HttpSession session = request.getSession();
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-      //  String hql = "FROM Employee WHERE email = :email";
-
         String jpql = "SELECT e FROM Employee e WHERE e.email = :email";
-      //  String checkRole = "SELECT ";
         TypedQuery<Employee> query = entityManager.createQuery(jpql, Employee.class);
         query.setParameter("email", email);
 
         List<Employee> employees = query.getResultList();
 
-    if (!employees.isEmpty()) {
+        if (!employees.isEmpty()) {
             Employee employee = employees.get(0);
             if (password.equals(employee.getPassword())) {
-
-                redirectToExternalURL(response, "https://www.google.com");
+//                RequestDispatcher requestDispatcher=request.getRequestDispatcher("/demo12_war_exploded/admin/");
+//                requestDispatcher.forward(request, response);
+                redirectToExternalURL(response, "/demo12_war_exploded/admin");
+                //redirectToExternalURL(response, "https://google.com");
+                session.setAttribute("id", employee.getId());
                 return true;
             }
         }
 
-        // Authentication failed
-        response.getWriter().println("Incorrect login. Please try again.");
+        // auth failed
+        redirectToExternalURL(response, "/demo12_war_exploded/LoginServlet");
+
+
+
         return false;
     }
 
     public void redirectToExternalURL(HttpServletResponse response, String externalURL) throws IOException {
-        // Perform the redirect to the external URL
+        //  redirect to the external URL
         response.sendRedirect(externalURL);
+
     }
 }
