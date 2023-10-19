@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
           integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="fonts/fontawesome-all.min.css"/>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="style/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/fontawesome-all.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css"/>
 </head>
 <body id="page-top">
 <div id="wrapper">
@@ -41,8 +41,8 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-<script src="js/theme.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/theme.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 <%-- Include your custom scripts as needed --%>
 <%--
 <jsp:include page="your_scripts.jsp" />

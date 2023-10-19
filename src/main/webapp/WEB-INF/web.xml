@@ -3,11 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-    <!-- Define security roles -->
-    <security-role>
-        <role-name>ADMIN</role-name>
-    </security-role>
-
+     Define security roles
+f
     <!-- Map the ADMIN role to a user or group (You need to specify a user or group name here) -->
 <!--    <security-role-mapping>-->
 <!--        <role-name>ADMIN</role-name>-->
@@ -15,16 +12,20 @@
 <!--    </security-role-mapping>-->
 
     <!-- Define the security constraint -->
-    <security-constraint>
+<!--    <security-constraint>-->
 
-        <web-resource-collection>
-            <web-resource-name>Protected Pages</web-resource-name>
-            <url-pattern>/admin/*</url-pattern> <!-- URL patterns to protect -->
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>ADMIN</role-name> <!-- Role required to access protected pages -->
-        </auth-constraint>
-    </security-constraint>
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>Protected Pages</web-resource-name>-->
+<!--            <url-pattern>/admin/*</url-pattern> &lt;!&ndash; URL patterns to protect &ndash;&gt;-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>ADMIN</role-name> &lt;!&ndash; Role required to access protected pages &ndash;&gt;-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
+    <mime-mapping>
+        <extension>css</extension>
+        <mime-type>text/css</mime-type>
+    </mime-mapping>
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -41,9 +42,17 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/admin</url-pattern>
+        <url-pattern>/admin/Dashboard</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.optima.demo12.Http.Filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
 
     <!-- Define the login configuration -->
     <login-config>
@@ -53,4 +62,6 @@
             <!-- Add a form-error-page if needed -->
         </form-login-config>
     </login-config>
+
+
 </web-app>

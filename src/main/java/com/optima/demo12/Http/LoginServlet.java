@@ -1,6 +1,7 @@
 package com.optima.demo12.Http;
 
 import com.optima.demo12.Database.Employee;
+import com.optima.demo12.Database.Role;
 import jakarta.persistence.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,14 +14,16 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/demo12_war_exploded/MyLoginServlet")
+//@WebServlet(name = "LoginServlet" , value = "/demo12_war_exploded/LoginServlet/")
+@WebServlet(name="LoginServlet", urlPatterns={"/demo12_war_exploded/LoginServlet/"})
+
 public class LoginServlet extends HttpServlet {
 //    @PersistenceContext(unitName = "default")
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Forward the request to the login page (login.jsp)
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.include(request, response);
 
     }
 
@@ -52,14 +55,19 @@ public class LoginServlet extends HttpServlet {
 
         if (!employees.isEmpty()) {
             Employee employee = employees.get(0);
-            if (password.equals(employee.getPassword())) {
-//                RequestDispatcher requestDispatcher=request.getRequestDispatcher("/demo12_war_exploded/admin/");
-//                requestDispatcher.forward(request, response);
-                redirectToExternalURL(response, "/demo12_war_exploded/admin");
-                //redirectToExternalURL(response, "https://google.com");
-                session.setAttribute("id", employee.getId());
+            Role role = employee.getRole();
+            String roleName = role.getRole();
+            System.out.println(roleName);
+            System.out.println(employee.getPassword());
+
+            if (password.equals( employee.getPassword() )  ) {
+//                && roleName.equals("Admin")
+                redirectToExternalURL(response, "/demo12_war_exploded/admin/Dashboard");
+                session.setAttribute("User_id", employee.getId());
+               // System.out.println("=======>"+employee.getId());
                 return true;
             }
+
         }
 
         // auth failed

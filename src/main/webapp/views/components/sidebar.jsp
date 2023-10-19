@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HP
-  Date: 13/10/2023
-  Time: 14:56
-  To change this template use File | Settings | File Templates.
---%>
+
 <nav  class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion sidebar-bg " >
   <div class="container-fluid d-flex flex-column p-0">
     <a class="navbar-brand d-flex justify-content-start align-items-center sidebar-brand " href="#">

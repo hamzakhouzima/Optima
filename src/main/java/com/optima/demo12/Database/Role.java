@@ -18,11 +18,19 @@ private String Role;
     public int getId() {
         return id;
     }
-    public void setRole(String role ){
+
+//    public uin
+    public void setRole(String role){
         this.Role = role;
     }
 
+    @Override
+    public String toString() {
+        return Role;
+    }
 
-
+    public  String getRole() {
+        return Role;
+    }
 
 }
