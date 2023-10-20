@@ -57,11 +57,14 @@ public class LoginServlet extends HttpServlet {
             Employee employee = employees.get(0);
             Role role = employee.getRole();
             String roleName = role.getRole();
-            System.out.println(roleName);
-            System.out.println(employee.getPassword());
 
-            if (password.equals( employee.getPassword() )  ) {
+            System.out.println(employee.getPassword());
+//            if(){
+//                System.out.println("Hello : "+roleName);
+//            }
+            if (password.equals( employee.getPassword() ) && roleName.equals("Admin")) {
 //                && roleName.equals("Admin")
+//                &&  roleName.toLowerCase().equals("admin")
                 redirectToExternalURL(response, "/demo12_war_exploded/admin/Dashboard");
                 session.setAttribute("User_id", employee.getId());
                // System.out.println("=======>"+employee.getId());
@@ -83,4 +86,5 @@ public class LoginServlet extends HttpServlet {
         response.sendRedirect(externalURL);
 
     }
+
 }
