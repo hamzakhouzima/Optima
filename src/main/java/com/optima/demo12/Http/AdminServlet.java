@@ -18,9 +18,8 @@ import java.io.IOException;
 public class AdminServlet extends HttpServlet {
 
     @PersistenceUnit(unitName = "default")
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
-    EntityManager entityManager = emf.createEntityManager();
-    EntityTransaction transaction = entityManager.getTransaction();
+    private EntityManager entityManager;
+
     EmployeeService employeeList = new EmployeeService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,10 +27,12 @@ public class AdminServlet extends HttpServlet {
 //    employeeList.displayEmployees();
 //        System.out.println(employeeList);
       //  employeeList.displayEmployees().forEach(employee-> System.out.println(employee));
+
+
         request.setAttribute("employees", employeeList.displayEmployees());
 
         // Forward the request to a JSP file
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Dashboard.jsp"); //create a jsp file and send a get Request
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Dashboard.jsp");
         dispatcher.include(request, response);
 
 
@@ -59,10 +60,11 @@ public class AdminServlet extends HttpServlet {
         employee.setPassword(role);
 //        employee.setDate(date);
 //       employee.setDepartment(1);
-
-        EmployeeService employeeService = new EmployeeService();
-
-        employeeService.AddEmployee(employee);
+//
+//        EmployeeService employeeService = new EmployeeService();
+//
+//        employeeService.AddEmployee(employee);
+        employeeList.AddEmployee(employee);
 
 
     }

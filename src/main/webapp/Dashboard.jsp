@@ -131,7 +131,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="AdminServlet" method="post">
+                <form action="/demo12_war_exploded/admin/Dashboard" method="post">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">First name:</label>
                         <input type="text" class="form-control" id="recipient-name1" name="firstName">
@@ -168,7 +168,9 @@
                     <input type="hidden" id="selectedValue" readonly name="role">
                     <button class="btn btn-secondary dropdown-toggle">
                         <span class="button__text">Add</span>
-                        <input type="submit" class="login__input" >
+                        <button class="btn btn-secondary dropdown-toggle" type="button" aria-expanded="false">
+                        <input type="submit" value="Submit">
+                        </button>
 
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>
