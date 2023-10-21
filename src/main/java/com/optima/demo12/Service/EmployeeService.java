@@ -18,18 +18,23 @@ public class EmployeeService implements EmployeesService{
 
     @Override
     public List<Employee> displayEmployees() {
+        try{
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            String SelectQuery = "SELECT e FROM Employee e";
+            TypedQuery<Employee> query = entityManager.createQuery(SelectQuery, Employee.class);
+            //  query.setParameter("id", ById);
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        String SelectQuery = "SELECT e FROM Employee e";
-        TypedQuery<Employee> query = entityManager.createQuery(SelectQuery, Employee.class);
-      //  query.setParameter("id", ById);
-
-        List<Employee> employees = query.getResultList();
+            List<Employee> employees = query.getResultList();
 
 
 
-        return employees;
+            return employees;
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(e);
+        }
+        return null;
     }
 
     @Override
