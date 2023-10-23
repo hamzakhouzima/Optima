@@ -8,8 +8,9 @@
       <li class="nav-item dropdown no-arrow">
         <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Hamza khouzima</span><img class="border rounded-circle img-profile" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"></a>
           <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-            <a class="dropdown-item" href="">
-              <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile
+            <a href="/demo12_war_exploded/admin/LogoutServlet/">Logout</a>
+
+            <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile
             </a>
             <div class="dropdown-divider"></div><a class="dropdown-item" href=""><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
           </div>

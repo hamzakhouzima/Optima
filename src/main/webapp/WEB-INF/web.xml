@@ -85,6 +85,16 @@
         <url-pattern>/admin/DeleteEmployee/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.optima.demo12.Http.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/admin/LogoutServlet/</url-pattern>
+    </servlet-mapping>
+
 
 
 
