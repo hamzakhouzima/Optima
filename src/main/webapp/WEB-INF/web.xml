@@ -75,6 +75,17 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>DeleteEmpServlet</servlet-name>
+        <servlet-class>com.optima.demo12.Http.DeleteEmpServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteEmpServlet</servlet-name>
+        <url-pattern>/admin/DeleteEmployee/</url-pattern>
+    </servlet-mapping>
+
+
 
 
 

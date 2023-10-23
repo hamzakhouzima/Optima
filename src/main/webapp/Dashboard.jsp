@@ -40,11 +40,12 @@
 <%--                       <tr>--%>
                         <%
                             List<Employee> employees = (List<Employee>) request.getAttribute("employees");
+//                            if(employees!=null){
                             for (Employee employee : employees) {
                         %>
                         <tr>
                             <td>  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-employee-id="<%=employee.getId()%>"><i class="bi bi-pencil"></i></button></td>
-
+                            <td>  <button type="button" class="btn btn-danger" id="deleteButton" data-bs-toggle="modal" data-bs-target="#deleteModal" data-delete-employee-id="<%=employee.getId()%>"><i class="bi bi-trash"></i></button> </td>
 <%--                            <td><%= employee.getId() %></td>--%>
                             <td><%= employee.getUsername() %></td>
                             <td><%= employee.getFirstName() %></td>
@@ -55,6 +56,9 @@
                         <%
                             }
                         %>
+<%--                        <%--%>
+<%--                            }--%>
+<%--                        %>--%>
 <%--                       </tr>--%>
 <%--                       </thead>--%>
 <%--                       <tbody>--%>
@@ -114,6 +118,14 @@
                     <div class="mb-3">
                         <label for="u_email" class="col-form-label">Email:</label>
                         <input type="text" class="form-control"  id="u_email" name="u_email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="u_username" class="col-form-label">UserName:</label>
+                        <input type="text" class="form-control"  id="u_username" name="u_username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="u_date" class="col-form-label">Date:</label>
+                        <input type="text" class="form-control"  id="u_date" name="u_date">
                     </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <input type="submit" value="Submit">
@@ -192,6 +204,34 @@
 <%------------------------Add Modal----------------------------------%>
 
 
+<%------------------------Validate Delete----------------------%>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the employee?</p>
+                <form id="deleteForm" action="/demo12_war_exploded/admin/DeleteEmployee/" method="post">
+                    <input type="text" name="employeeId" id="deleteEmployeeId" >
+                    <button type="submit" value="Submit" class="btn btn-danger" id="confirmDelete">Delete</button>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%------------------------Validate Delete----------------------%>
+
 
 <%--JSCRIPT--%>
 <!-- Include jQuery library -->
@@ -227,6 +267,20 @@
         });
     });
 
+    // delete id catcher
+    $(document).ready(function () {
+        // Listen for a click event on buttons with the "btn-danger" class that have the data-delete-employee-id attribute
+        $('button.btn-danger[data-delete-employee-id]').on('click', function () {
+            // Retrieve the employeeId from the data-delete-employee-id attribute
+            var delete_id = $(this).data('delete-employee-id');
+
+            // Set the value of the input field with id "deleteid"
+            $('#deleteEmployeeId').val(delete_id);
+            console.log("Button clicked, delete_id: " + delete_id);
+        });
+    });
+
+    <%--<td>  <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal" delete-employee-id="<%=employee.getId()%>"><i class="bi bi-trash"></i></button> </td>--%>
 
 
 </script>

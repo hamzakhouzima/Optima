@@ -60,9 +60,27 @@ public class EmployeeService implements EmployeesService {
     @Override
     public void deleteEmployee(Employee employee) {
         EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
-        em.getTransaction().begin();
-        em.remove(em.contains(employee) ? employee : em.merge(employee));
-        em.getTransaction().commit();
-        em.close();
+
+        try {
+            em.getTransaction().begin();
+            if (em.contains(employee)) {
+                em.remove(employee);
+            } else {
+                Employee managedEmployee = em.find(Employee.class, employee.getId());
+                if (managedEmployee != null) {
+                    em.remove(managedEmployee);
+                } else {
+                    // Handle the case where the employee doesn't exist
+                    // You can throw an exception, log the error, or take other actions as needed
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            // Handle any exceptions that may occur during the delete operation
+            e.printStackTrace(); // You can log the error for debugging purposes
+            // You can also throw a custom exception or handle the error in a specific way
+        } finally {
+            em.close();
+        }
     }
 }
