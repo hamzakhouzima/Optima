@@ -47,6 +47,23 @@ public class Employee {
     @OneToMany(mappedBy = "assignedTo")
     private List<Task> tasks;
 
+
+//    public void setRoleFromString(int roleName) {
+//
+//            Role role = new Role();
+//            role.setRole(roleName); // Assuming "Role" has a "name" property
+//
+//            this.role = role;
+//
+//    }
+
+    public void setRoleId(String roleId) {
+        Role role = new Role();
+        role.setId(Integer.parseInt(roleId));
+        this.role = role;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -110,6 +127,23 @@ public class Employee {
     public void setDepartment(Departement department) {
         this.department = department;
     }
+
+
+    public void setDepId(String depId) {
+        Departement dep = new Departement();
+        try {
+            // Assuming depId is a String representing an integer
+            int departmentId = Integer.parseInt(depId);
+            dep.setId(departmentId);
+            this.department = dep;
+        } catch (NumberFormatException e) {
+            // Handle the exception if depId is not a valid integer
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     public Role getRole() {
         return role;

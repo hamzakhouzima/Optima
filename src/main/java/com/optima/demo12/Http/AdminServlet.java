@@ -39,34 +39,5 @@ public class AdminServlet extends HttpServlet {
     }
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//        String username = request.getParameter("username");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-//        String date = request.getParameter("date");
-
-
-
-        Employee employee = new Employee();
-//        employee.setUsername(username);
-        employee.setFirstName(firstName);
-        employee.setLastName(lastName);
-        employee.setEmail(email);
-        employee.setPassword(password);
-        employee.setPassword(role);
-//        employee.setDate(date);
-//       employee.setDepartment(1);
-//
-//        EmployeeService employeeService = new EmployeeService();
-//
-//        employeeService.AddEmployee(employee);
-        employeeList.AddEmployee(employee);
-
-
-    }
 
 }

@@ -39,6 +39,10 @@
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
 
+
+
+
+
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>com.optima.demo12.Http.AdminServlet</servlet-class>
@@ -48,10 +52,47 @@
         <url-pattern>/admin/Dashboard</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>AddEmpServlet</servlet-name>
+        <servlet-class>com.optima.demo12.Http.AddEmpServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddEmpServlet</servlet-name>
+        <url-pattern>/admin/AddEmployee</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>EditEmpServlet</servlet-name>
+        <servlet-class>com.optima.demo12.Http.EditEmpServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EditEmpServlet</servlet-name>
+        <url-pattern>/admin/EditEmployee/</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>com.optima.demo12.Http.Filters.AuthenticationFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>

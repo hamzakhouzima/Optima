@@ -32,7 +32,7 @@
 
             <div class="container-fluid overflow-auto" style="max-height: 80vh;margin-top: 2cm">
                <%-- <jsp:include page="your_content.jsp" />--%>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-plus"></i></button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1"  ><i class="bi bi-plus"></i></button>
 
 
                    <table class="table">
@@ -43,7 +43,7 @@
                             for (Employee employee : employees) {
                         %>
                         <tr>
-                            <td>  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil"></i></button></td>
+                            <td>  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-employee-id="<%=employee.getId()%>"><i class="bi bi-pencil"></i></button></td>
 
 <%--                            <td><%= employee.getId() %></td>--%>
                             <td><%= employee.getUsername() %></td>
@@ -56,16 +56,16 @@
                             }
                         %>
 <%--                       </tr>--%>
-                       </thead>
-                       <tbody>
-                       <tr>
-                           <th scope="row">1</th>
-                           <td>Mark</td>
-                           <td>Otto</td>
-                           <td>@mdo</td>
-                       </tr>
+<%--                       </thead>--%>
+<%--                       <tbody>--%>
+<%--                       <tr>--%>
+<%--                           <th scope="row">1</th>--%>
+<%--                           <td>Mark</td>--%>
+<%--                           <td>Otto</td>--%>
+<%--                           <td>@mdo</td>--%>
+<%--                       </tr>--%>
 
-                       </tbody>
+<%--                       </tbody>--%>
                    </table>
 <%--                --%>
             </div>
@@ -101,21 +101,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="/demo12_war_exploded/admin/EditEmployee/" method="post">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label for="first-name" class="col-form-label">First name :</label>
+                        <input type="text" class="form-control" id="first-name" name="u_first">
+                    </div>
+                    <input type="hidden" name="employeeId" id="employeeId">
+                    <div class="mb-3">
+                        <label for="last-name" class="col-form-label">Last name:</label>
+                        <input type="text" class="form-control" id="last-name" name="u_last">
                     </div>
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label for="u_email" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control"  id="u_email" name="u_email">
                     </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" value="Submit">
+
+            </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -131,7 +138,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/demo12_war_exploded/admin/Dashboard" method="post">
+                <form action="/demo12_war_exploded/admin/AddEmployee" method="post">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">First name:</label>
                         <input type="text" class="form-control" id="recipient-name1" name="firstName">
@@ -165,12 +172,11 @@
                     </div>
 
                     <!-- Input fields to display the selected value -->
-                    <input type="hidden" id="selectedValue" readonly name="role">
-                    <button class="btn btn-secondary dropdown-toggle">
-                        <span class="button__text">Add</span>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" aria-expanded="false">
-                        <input type="submit" value="Submit">
-                        </button>
+                    <input type="text" id="selectedValue" readonly name="role">
+<%--                    <button class="btn btn-secondary dropdown-toggle">--%>
+                          <span class="button__text">Add</span>
+                     //   <button type="submit" class="btn btn-primary">Submit</button>
+                            <input type="submit" value="Submit">
 
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>
@@ -197,13 +203,33 @@
         $('.dropdown-item').on('click', function () {
             // Get the value from the data-value attribute
             var selectedValue = $(this).data('value');
-
-            // Set the selected value to the input field
             $('#selectedValue').val(selectedValue);
+
+            // Set the selected value µ);
         });
     });
 </script>
 
+
+<%--this is ajax id to send the id when the button is  clicked to update employee --%>
+<script>
+
+    $(document).ready(function () {
+        // Listen for a click event on buttons with the "btn-primary" class that have the data-employee-id attribute
+        $('button.btn-primary[data-employee-id]').on('click', function () {
+            // Retrieve the employeeId from the data-employee-id attribute
+            var employeeId = $(this).data('employee-id');
+
+            // Set the value of the hidden input field with id "employeeId"
+            $('#employeeId').val(employeeId);
+
+            console.log("Button clicked, employeeId: " + employeeId);
+        });
+    });
+
+
+
+</script>
 <%--JSCRIPT--%>
 
 </body>
