@@ -9,13 +9,16 @@ import java.util.List;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id")
     private int id;
 
     @ManyToOne
     @JoinColumn(name = "emp_id")
     private Employee employee;
+
+    @ManyToOne  // Add this annotation for the equipement attribute
+    @JoinColumn(name = "equipement_id")  // Define the column name for the equipement foreign key
+    private Equipement equipement;  // Define an equipement attribute
 
     @Column(name = "reservation_date")
     private String reservation_date;
@@ -26,6 +29,14 @@ public class Reservation {
     @Column(name = "type")
     private String type;
 
+    // Getter and setter methods for the equipement attribute
+    public Equipement getEquipement() {
+        return equipement;
+    }
+
+    public void setEquipement(Equipement equipement) {
+        this.equipement = equipement;
+    }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
@@ -66,6 +77,7 @@ public class Reservation {
     public String getType() {
         return type;
     }
+
 
 
 }

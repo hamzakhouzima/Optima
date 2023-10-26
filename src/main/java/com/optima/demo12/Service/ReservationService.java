@@ -20,15 +20,27 @@ public class ReservationService implements ReservationInterface{
     public void MakeReservation(Employee employee, Equipement equipement) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(employee.getId());
-            entityManager.persist(equipement);
+
+            // Create a new Reservation object
+            Reservation reservation = new Reservation();
+            reservation.setEmployee(employee);
+            reservation.setEquipement(equipement);
+
+            // Persist the Reservation object
+            entityManager.persist(reservation);
+
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }
     }
-
+    public List<Equipement> fetchEquipementData() {
+        String selectQuery = "SELECT e FROM Equipement e";
+        TypedQuery<Equipement> query = entityManager.createQuery(selectQuery, Equipement.class);
+        List<Equipement> equipements = query.getResultList();
+        return equipements;
+    }
 
 }
 
